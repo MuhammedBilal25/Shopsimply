@@ -45,7 +45,7 @@
 
         authorization:Token
 
-        status:pending
+        status:completed
     
     >>> api for fetching a specific product detail <<<<
 
@@ -57,7 +57,7 @@
 
         authorization:Token
 
-        status:pending
+        status:completed
 
     >>> api for adding a specific product to basket <<<<
 
@@ -74,7 +74,7 @@
 
         authorization:Token
 
-        status:pending
+        status:completed
     
 
 ==========carts==========
@@ -89,7 +89,7 @@
 
         authorization:Token
 
-        status:pending
+        status:completed
 
     >>> api for updating a  cart item <<<<
     
@@ -105,7 +105,7 @@
 
         authorization:Token
 
-        status:pending
+        status:completed
 
 
 
@@ -119,7 +119,7 @@
 
         authorization:Token
 
-        status:pending
+        status:completed
 
 
 
@@ -148,7 +148,7 @@
 
         authorization:Token
 
-        status:pending
+        status:completed
 
     >>> api for listing a orders<<<<    
     
@@ -160,7 +160,7 @@
 
         authorization:Token
 
-        status:pending
+        status:completed
 
     >>> api for cancell order<<<<    
         

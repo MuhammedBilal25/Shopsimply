@@ -2,7 +2,7 @@ from django.contrib.auth.models import User
 
 from rest_framework import serializers
 
-from shop.models import Product,Category,Brand,Size
+from shop.models import Product,Category,Brand,Size,Basket,BasketItem,Order
 
 
 class UserSerializer(serializers.ModelSerializer):
@@ -52,4 +52,56 @@ class ProductSerializer(serializers.ModelSerializer):
 
     class Meta:
         model=Product
+        fields="__all__"
+
+class CartProductSerilizer(serializers.ModelSerializer):
+
+    class Meta:
+        model = Product
+        fields=[
+            "id",
+            "title",
+            "price",
+            "image"
+        ]
+
+class BasketItemSerilizer(serializers.ModelSerializer):
+    item_total=serializers.CharField(read_only=True)
+    size_object=serializers.StringRelatedField()
+    product_object=CartProductSerilizer(read_only=True)
+    class Meta:
+
+        model=BasketItem
+        fields=[
+            "id",
+            "product_object",
+            "size_object",
+            "quantity",
+            "created_date",
+            "item_total"
+            ]
+
+
+        
+class BasketSerilizer(serializers.ModelSerializer):
+
+    basketitems=BasketItemSerilizer(many=True)
+    basket_total=serializers.CharField()
+    owner=serializers.StringRelatedField()
+
+    class Meta:
+        model=Basket
+        fields=[
+            "id",
+            "owner",
+            "basketitems",
+            "basket_total"
+            ]
+
+
+class Orderserilizer(serializers.ModelSerializer):
+    order_total=serializers.CharField(read_only=True)
+    basket_item_objects=BasketItemSerilizer(many=True)
+    class Meta:
+        model=Order
         fields="__all__"

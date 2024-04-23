@@ -25,6 +25,10 @@ urlpatterns = [
     path('api/v1/token/',ObtainAuthToken.as_view()),
     path('api/v1/products/',views.ProductListView.as_view()),
     path('api/v1/products/<int:pk>/',views.ProductDetailView.as_view()),
-    
-
+    path('api/v1/products/<int:pk>/addtocart/',views.AddtoCartView.as_view()),
+    path('api/v1/carts/',views.CartListView.as_view()),
+    path('api/v1/carts/<int:pk>/',views.CartItemUpdateView.as_view()),
+    path('api/v1/order/',views.CkeckOutView.as_view()),
+    path('api/v1/order/summary/',views.OrderSummaryListView.as_view()),
+    path('api/v1/payment/verification/',views.PaymentVerificationView.as_view()),
 ]

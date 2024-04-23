@@ -21,6 +21,7 @@ class Category(models.Model):
     def __str__(self):
 
         return self.name
+    
 
 
 class Size(models.Model):
@@ -99,6 +100,20 @@ class Basket(models.Model):
     def __str__(self):
 
         return self.owner.username
+    
+    @property
+    def basketitems(self):
+
+        return self.cartitems.filter(is_order_placed=False)
+    
+    @property
+    def basket_total(self):
+
+        basket_item_list=self.basketitems
+        total=0
+        if basket_item_list:
+            total=sum([bi.item_total for bi in basket_item_list])
+        return total
 
 
 
@@ -180,6 +195,11 @@ class Order(models.Model):
     updated_date = models.DateTimeField(auto_now=True)
 
     is_active = models.BooleanField(default=True)
+    
+    @property
+    def order_total (self):
+        basket_items=self.basket_item_objects.all()
+        return sum([bi.item_total for bi in basket_items]) if basket_items else 0
 
 
 
